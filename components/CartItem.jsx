@@ -1,12 +1,12 @@
 import Image from "next/image";
-
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const CartItem = () => {
     return (
         <div className='flex py-5 gap-3 md:gap-5 border-b'>
             {/* IMAGE START */}
             <div className="shrink-0 aspect-square w-[50px] md:w-[120px]">
-                <Image
+                <img
                     src='/product/p1.png'
                     alt='cart'
                     width={120}
@@ -15,33 +15,33 @@ const CartItem = () => {
             </div>
             {/* IMAGE END */}
             <div className="w-full flex flex-col">
-                <div className="flex flex-col md:flex-row justify-between">
+                <div className="flex flex-col md:flex-row md:justify-between">
                     {/* PRODUCT TITLE */}
-                    <div className="text-lg md:text-2xl font-semibold text-black/[0.8]">
-                        name
+                    <div className="text-lg md:text-2xl font-semibold text-black/[0.8] max-md:mr-auto">
+                        Jordan Retro 6 G
                     </div>
 
                     {/* PRODUCT SUBTITLE */}
-                    <div className="text-sm md:text-md font-medium text-black/[0.5] md:hidden flex justify-start">
+                    <div className="text-sm md:text-md font-medium text-black/[0.5] block md:hidden max-md:mr-auto">
                         Men's Golf
                     </div>
 
                     {/* PRODUCT PRICE */}
-                    <div className="text-sm md:text-md font-bold text-black/[0.5] mt-2">
+                    <div className="text-sm md:text-md font-bold text-black/[0.5] mt-2 ml-0 max-md:mr-auto">
                         MRP : &#8377;19 695.00
                     </div>
                 </div>
 
                 {/* PRODUCT SUBTITLE */}
-                <div className="text-md font-medium text-black/[0.5] hidden md:block">
-                    SUBTITLE
+                <div className="text-md font-medium text-black/[0.5] hidden md:block mr-auto">
+                    Men's Golf
                 </div>
 
                 <div className="flex items-center justify-between mt-4">
                     <div className="flex items-center gap-2 md:gap-10 text-black/[0.5] text-sm md:text-md">
                         <div className="flex items-center gap-1">
                             <div className="font-semibold">Size:</div>
-                            <select className="hover:text-black">
+                            <select className="hover:text-black shadow-[0px_0px_3px_1px_#cbd5e0] rounded-lg transition ease-out py-1 px-1">
                                 <option value="1">UK 6</option>
                                 <option value="1">UK 6</option>
                                 <option value="1">UK 6</option>
@@ -49,17 +49,22 @@ const CartItem = () => {
                         </div>
                         <div className="flex items-center gap-1">
                             <div className="font-semibold">Quantity:</div>
-                            <select className="hover:text-black">
+                            <select className="hover:text-black shadow-[0px_0px_3px_1px_#cbd5e0] rounded-lg transition ease-out py-1 px-1">
                                 <option value="1">UK 6</option>
                                 <option value="1">UK 6</option>
                                 <option value="1">UK 6</option>
                             </select>
                         </div>
                     </div>
+                    <RiDeleteBin6Line
+                        className="cursor-pointer text-black/[0.5] hover:text-black text-[16px] md:text-[20px]"
+                    />
                 </div>
+
             </div>
+
         </div>
-    )
+    );
 }
 
 export default CartItem
