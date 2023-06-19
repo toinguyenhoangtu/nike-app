@@ -8,14 +8,6 @@ const data = [
     { id: 3, name: "Categories", subMenu: true },
     { id: 4, name: "Contact", url: "/contact" },
 ];
-
-const subMenuData = [
-    { id: 1, name: "Jordan", doc_count: 11 },
-    { id: 2, name: "Sneakers", doc_count: 8 },
-    { id: 3, name: "Running shoes", doc_count: 64 },
-    { id: 4, name: "Football shoes", doc_count: 107 }, queueMicrotask
-];
-
 function MenuMobile(
     {
         showCatMenu,
@@ -40,20 +32,20 @@ function MenuMobile(
 
                                     {showCatMenu && (
                                         <ul className="bg-black/[0.05] -mx-5 mt-4 -mb-4">
-                                            {subMenuData.map((submenu) => {
-                                                const key = `${submenu.name}-${submenu.doc_count}`; // Create a unique key using a combination of values
+                                            {categories.map(({attributes: attr, id}) => {
+                                                const key = `${attr.name}-${attr.products?.data?.length}`; // Create a unique key using a combination of values
                                                 return (
                                                     <Link
                                                         key={key}
-                                                        href={submenu.name}
+                                                        href={attr.slug}
                                                         onClick={() => {
                                                             setShowCatMenu(true);
                                                             setMobileMenu(false)
                                                         }}
                                                     >
                                                         <li className="py-4 px-8 border-t flex justify-between">
-                                                            {submenu.name}
-                                                            <span className="opacity-50 text-sm">{submenu.doc_count}</span>
+                                                            {attr.name}
+                                                            <span className="opacity-50 text-sm">{attr.products?.data?.length}</span>
                                                         </li>
                                                     </Link>
                                                 )
