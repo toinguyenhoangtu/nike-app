@@ -2,11 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import Wrapper from "@/components/Wrapper";
 import CartItem from "@/components/CartItem";
-import { useSelector, useDispatch } from "react-redux";
-
+import { useSelector } from "react-redux";
+import { useMemo } from "react";
 
 const Cart = () => {
+
     const { cartItems } = useSelector((state => state.cart))
+
+    const totalPrice = useMemo(()=>{
+        return cartItems.reduce((total, item) => total + item.attributes.price , 0)
+    },[cartItems]);
 
     return (
         <div className="w-full md:py-20">
@@ -44,7 +49,7 @@ const Cart = () => {
                                                 Subtotal
                                             </div>
                                             <div className="text-md md:text-lg font-medium text-black">
-                                                &#8377;20
+                                                &#8377;{totalPrice}
                                             </div>
                                         </div>
                                         <div className="text-sm md:text-md py-5 border-t mt-5">
@@ -88,7 +93,7 @@ const Cart = () => {
                                     href="/"
                                     className="py-4 px-8 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 mt-8"
                                 >
-                                    Continue Shopping
+                                    Continue Shopping   
                                 </Link>
                             </div>
 

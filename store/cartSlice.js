@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     cartItems: [],
 }
+
 export const cartSlice = createSlice({
     name: 'cart',
     initialState,
@@ -18,10 +19,26 @@ export const cartSlice = createSlice({
                 state.cartItems.push({ ...action.payload, quantity: 1 });
             }
         },
+        updateCart: (state, action) => {
+            state.cartItems = state.cartItems.map((p) => {
+                if (p.id === action.payload.id) {
+                    if (action.payload.key === 'quantity') {
+                        p.attributes.price = p.oneQuantityPrice * action.payload.val;
+                    }
+                    return { ...p, [action.payload.key]: action.payload.val }
+                }
+                return p;
+            });
+        },
+        removeCart: (state, action) => {
+            state.cartItems = state.cartItems.filter(
+                (p) => p.id !== action.payload.id
+            )
+        }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { addToCart } = cartSlice.actions
+export const { addToCart, updateCart, removeCart } = cartSlice.actions
 
 export default cartSlice.reducer

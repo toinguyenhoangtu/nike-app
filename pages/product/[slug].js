@@ -6,17 +6,22 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import ReactMarkdown from "react-markdown";
 import ProductDetailsCarousel from "@/components/ProductDetailsCarousel";
 import RelativedProduct from "@/components/RelativedProduct";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addToCart } from "../../store/cartSlice";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import BreardCumb from '../../components/BreardCumb';
 
 export default function ProductDetails({ product, products }) {
+
     const [selectedSize, setSelectedSize] = useState();
+
     const [showError, setShowError] = useState(false);
+
     const attr = product?.data?.[0]?.attributes;
+
     const dispatch = useDispatch();
-   
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (attr && selectedSize) {
@@ -31,9 +36,10 @@ export default function ProductDetails({ product, products }) {
         }
     }
     return (
-        <div className="w-full md:py-20">
+        <div className="w-full md:py-10">
             <ToastContainer />
             <Wrapper>
+                <BreardCumb dataProduct={attr.name}/>
                 <div className="flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]">
                     {/* left column start */}
                     <div className="w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
@@ -43,7 +49,9 @@ export default function ProductDetails({ product, products }) {
                     </div>
                     {/* left column end */}
                     {/* right column start */}
-                    <form className="flex-[1] py-3" onSubmit={handleSubmit}>
+                    <form className="flex-[1] py-3"
+                        onSubmit={handleSubmit}
+                    >
                         {/* PRODUCT TITLE */}
                         <div className="text-[28px] font-semibold mb-2 leading-tight">
                             {attr.name}

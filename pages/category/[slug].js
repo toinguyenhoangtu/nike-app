@@ -5,12 +5,12 @@ import { fetchDataFromApi } from "@/utils/api";
 import { useEffect, useState } from "react"
 import useSWR from "swr";
 import { useRouter } from "next/router";
+import BreardCumb from '../../components/BreardCumb';
 const maxResult = 3;
 
 const Category = ({ category, products, slug }) => {
     const [pageIndex, setPageIndex] = useState(1)
     const { query } = useRouter();
-
     const { data, error, isLoading } = useSWR(
         `/api/products?populate=*&[filters][categories][slug][$eq]=${slug}&pagination[page]=${pageIndex}&pagination[pageSize]=${maxResult}`,
         fetchDataFromApi,
@@ -23,11 +23,13 @@ const Category = ({ category, products, slug }) => {
     }, [query])
 
     return (
-        <div className="w-full md:py-20 relative">
+        <div className="w-full md:py-10 relative">
             <Wrapper>
+                <BreardCumb dataCategory={category?.data?.[0]?.attributes?.name} />
                 <div className="text-center max-w-[800px] mx-auto mt-8 md:mt-0">
                     <div className="text-[28px] md:text-[34px] mb-5 font-semibold leading-tight">
                         {category?.data?.[0]?.attributes?.name}
+
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-14 px-5 md:px-0">
                         {data?.data?.map((product) => (
