@@ -24,7 +24,7 @@ const Category = ({ category, products, slug }) => {
 
     return (
         <div className="w-full md:py-10 relative">
-            <Wrapper>
+            <Wrapper>   
                 <BreardCumb dataCategory={category?.data?.[0]?.attributes?.name} />
                 <div className="text-center max-w-[800px] mx-auto mt-8 md:mt-0">
                     <div className="text-[28px] md:text-[34px] mb-5 font-semibold leading-tight">
