@@ -185,7 +185,7 @@ export async function getStaticPaths() {
         params: {
             slug: p.attributes.slug,
         },
-    }));
+    })) || [];
 
     return {
         paths,
@@ -195,12 +195,10 @@ export async function getStaticPaths() {
 
 // `getStaticPaths` requires using `getStaticProps`
 export async function getStaticProps({ params: { slug } }) {
-    const product = await fetchDataFromApi(
-        `/api/products?populate=*&filters[slug][$eq]=${slug}`
-    );
-    const products = await fetchDataFromApi(
-        `/api/products?populate=*&[filters][slug][$ne]=${slug}`
-    );
+    const [product, products] = await Promise.all([
+        fetchDataFromApi(`/api/products?populate=*&filters[slug][$eq]=${slug}`),
+        fetchDataFromApi(`/api/products?populate=*&filters[slug][$ne]=${slug}`),
+    ]);
 
     return {
         props: {
