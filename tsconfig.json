@@ -15,9 +15,25 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@components/*": ["./components/*", "./stories/components/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_app.jsx", "pages/category/category1.jsx", "components/Wrapper.jsx", "components/Header.jsx", "components/Footer.jsx", "pages/index.ts", "pages/about.js", "components/Banner.jsx", "components/MenuMobile.jsx", "components/Menu.jsx"],
+  "include": ["next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "pages/_app.jsx",
+    "pages/category/category1.jsx",
+    "components/Wrapper.jsx",
+    "components/Header.jsx",
+    "components/Footer.jsx",
+    "pages/index.ts",
+    "pages/about.js",
+    "components/Banner.jsx",
+    "components/MenuMobile.jsx",
+    "components/Menu.jsx",
+    "components/LayoutTrans.jsx",
+    "pages/_document.jsx"
+  ],
   "exclude": ["node_modules"]
 }
