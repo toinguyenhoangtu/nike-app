@@ -1,7 +1,6 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-
-const ProductDetailsCarousel = () => {
+const ProductDetailsCarousel = ({ data }) => {
     return (
         <div className="text-white text-[20px] w-full max-w-[1360px] mx-auto sticky top-[50px]">
             <Carousel
@@ -11,12 +10,16 @@ const ProductDetailsCarousel = () => {
                 thumbWidth={60}
                 className="productCarousel"
             >
-                <img src="/product/p2.png" />
-                <img src="/product/p3.png" />
-                <img src="/product/p4.png" />
-                <img src="/product/p5.png" />
-                <img src="/product/p6.png" />
-                <img src="/product/p7.png" />
+                {
+                    data?.map((image, index) => (
+                        <img
+                            loading="lazy"
+                            key={index}
+                            src={image.attributes.url}
+                            alt={image.attributes.name}
+                        />
+                    ))
+            }
             </Carousel>
         </div>
     );

@@ -2,9 +2,12 @@
 import Banner from '@/components/Banner'
 import Wrapper from '@/components/Wrapper'
 import ProductCard from '@/components/ProductCard'
-export default function Home() {
+import { fetchDataFromApi } from '../utils/api';
+import React from 'react';
+
+export default function Home({ products }) {
   return (
-    <main className="h-full">
+    <main>
       <Banner />
       <Wrapper>
         {/* heading and paragaph start */}
@@ -19,24 +22,22 @@ export default function Home() {
           </div>
         </div>
         {/* heading and paragaph end */}
-
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-14 px-5 md:px-0">
-          {/* {products?.data?.map((product) => (
-            <ProductCard key={product?.id} data={product} />
-          ))} */}
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {products?.data?.map(product => (
+            <React.Fragment key={product.id}>
+              <ProductCard data={product} />
+            </React.Fragment>
+          ))}
         </div>
         {/* products grid end */}
       </Wrapper>
     </main>
   )
+}
+
+export async function getStaticProps() {
+  const products = await fetchDataFromApi('/api/products?populate=*');
+  return {
+    props: { products }
+  }
 }
