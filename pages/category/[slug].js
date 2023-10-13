@@ -1,12 +1,12 @@
 import React from 'react';
-import Wrapper from '@/components/Wrapper';
-import ProductCard from '../../components/ProductCard';
-import { fetchDataFromApi } from "@/utils/api";
+import Wrapper from '@components/Wrapper';
+import ProductCard from '@components/ProductCard';
+import { fetchDataFromApi } from "@utils/api";
 import { useEffect, useState } from "react"
 import useSWR from "swr";
 import { useRouter } from "next/router";
-import BreardCumb from '../../components/BreardCumb';
-import LayoutTransition from '../../components/LayoutTransiton';
+import BreardCumb from '@components/BreardCumb';
+import LayoutTransition from '@components/LayoutTransiton';
 const maxResult = 3;
 
 const Category = ({ category, products, slug }) => {

@@ -1,17 +1,18 @@
-import Wrapper from "@/components/Wrapper";
+import Wrapper from "@components/Wrapper";
 import React, { useState } from "react"
-import { fetchDataFromApi } from "@/utils/api";
+import { fetchDataFromApi } from "@utils/api";
 import { getDiscountedPricePercentage } from "../../utils/helper";
 import { IoMdHeartEmpty } from "react-icons/io";
 import ReactMarkdown from "react-markdown";
-import ProductDetailsCarousel from "@/components/ProductDetailsCarousel";
-import RelativedProduct from "@/components/RelativedProduct";
+import ProductDetailsCarousel from "@components/ProductDetailsCarousel";
+import RelativedProduct from "@components/RelativedProduct";
 import { useDispatch } from 'react-redux';
-import { addToCart } from "../../store/cartSlice";
+import { addToCart } from "@store/cartSlice";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import BreardCumb from '../../components/BreardCumb';
-import LayoutTransition from '../../components/LayoutTransiton';
+import BreardCumb from '@components/BreardCumb';
+import LayoutTransition from '@components/LayoutTransiton';
+
 export default function ProductDetails({ product, products }) {
 
     const [selectedSize, setSelectedSize] = useState();
